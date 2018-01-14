@@ -18,6 +18,21 @@ class TokenProxy
         $this->http = $http;
     }
 
+    public function login($email, $password){
+        if (auth()->attempt(['email' => $email, 'password' => $password, 'is_active' => 1])) {
+            return $this->proxy('password', [
+                'username' => $email,
+                'password' => $password,
+                'scope' => '' ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Credentials not match'
+        ],421);
+
+    }
+
     public function proxy($grantType, array $data = [])
     {
         $data = array_merge($data, [
