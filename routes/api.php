@@ -24,3 +24,4 @@ Route::any('{model}/{action}', function($model,$action){
 });
 
 Route::post('/register','Auth\RegisterController@register');
+Route::post('/login', 'Auth\LoginController@login');

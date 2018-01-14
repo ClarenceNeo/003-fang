@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import JWTToken from './../helpers/jwt'
+  import JWTToken from './../../helpers/jwt'
   export default {
     data() {
       return {
@@ -45,16 +45,12 @@
     methods: {
       login() {
         let formData = {
-          client_id : '2',
-          client_secret : 'PNLsvb7u3gIZLq04SIcbEzJhr1pGVz1TM1baR3IC',
-          grant_type : 'password',
-          scope: '',
-          username: this.email,
+          email: this.email,
           password: this.password
         }
-        axios.post('/oauth/token', formData).then(r => {
-          JWTToken.setToken(r.data.access_token)
-          console.log(r.data)
+        axios.post('/api/login', formData).then(r => {
+          JWTToken.setToken(r.data.token)
+          console.log(r)
         })
       }
     }

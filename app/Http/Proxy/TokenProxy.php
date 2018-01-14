@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Clarence
+ * Date: 14/01/2018
+ * Time: 8:14 PM
+ */
+
+namespace App\Http\Proxy;
+
+
+class TokenProxy
+{
+    protected $http;
+
+    public function __construct(\GuzzleHttp\Client $http)
+    {
+        $this->http = $http;
+    }
+
+    public function proxy($grantType, array $data = [])
+    {
+        $data = array_merge($data, [
+            'client_id' => env('PERSONAL_CLIENT_ID'),
+            'client_secret' => env('PASSPORT_CLIENT_SECRET'),
+            'grant_type' => $grantType,
+        ]);
+
+      $response = $this->http->post('http://fang.test/oauth/token',[
+          'form_params' => $data
+      ]);
+
+      $token = json_decode((string) $response->getBody(), true);
+      return response()->json([
+          'token' => $token['access_token'],
+          'expires_in' => $token['expires_in']
+      ])->cookie('refreshToken', $token['refresh_token'], 86400, null, null, false, true);
+    }
+
+}

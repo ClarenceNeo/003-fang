@@ -54198,7 +54198,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_jwt__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_jwt__ = __webpack_require__(101);
 //
 //
 //
@@ -54247,16 +54247,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     login: function login() {
       var formData = {
-        client_id: '2',
-        client_secret: 'PNLsvb7u3gIZLq04SIcbEzJhr1pGVz1TM1baR3IC',
-        grant_type: 'password',
-        scope: '',
-        username: this.email,
+        email: this.email,
         password: this.password
       };
-      axios.post('/oauth/token', formData).then(function (r) {
-        __WEBPACK_IMPORTED_MODULE_0__helpers_jwt__["a" /* default */].setToken(r.data.access_token);
-        console.log(r.data);
+      axios.post('/api/login', formData).then(function (r) {
+        __WEBPACK_IMPORTED_MODULE_0__helpers_jwt__["a" /* default */].setToken(r.data.token);
+        console.log(r);
       });
     }
   }
@@ -54471,7 +54467,8 @@ if (false) {
 }
 
 /***/ }),
-/* 100 */
+/* 100 */,
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
