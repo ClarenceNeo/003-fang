@@ -15,6 +15,10 @@ let routes = [{
   path: '/house/:id',
   name: 'house',
   component: require('./components/public/House')
+}, {
+  path: '/register',
+  name: 'register',
+  component: require('./components/register/Register')
 }]
 
 export default new VueRouter({

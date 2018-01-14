@@ -18,7 +18,9 @@
         <li class=""><router-link to="/admin"> 后台 </router-link></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">登出</a></li>
+        <router-link to="/register" tag="li">
+          <a>注册</a>
+        </router-link>
       </ul>
     </div>
   </div>
