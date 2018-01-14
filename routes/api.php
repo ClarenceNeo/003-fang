@@ -22,3 +22,5 @@ Route::any('{model}/{action}', function($model,$action){
     // dd($action, $controller, $model);
     return (new $controller($model))->$action();
 });
+
+Route::post('/register','Auth\RegisterController@register');

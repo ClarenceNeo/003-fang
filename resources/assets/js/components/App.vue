@@ -14,7 +14,6 @@
       TopMenu
     },
     mounted(){
-      console.log(1);
     }
   }
 </script>
