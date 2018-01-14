@@ -46337,8 +46337,10 @@ module.exports = Component.exports
 
 /***/ }),
 /* 83 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -46383,6 +46385,27 @@ module.exports = Component.exports
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: '',
+      email: '',
+      password: ''
+    };
+  },
+
+  methods: {
+    register: function register() {
+      var formData = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      };
+      axios.post('api/register', formData).then(function (r) {});
+    }
+  }
+});
 
 /***/ }),
 /* 84 */
@@ -46392,14 +46415,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "form-horizontal" }, [
+  return _c(
+    "form",
+    {
+      staticClass: "form-horizontal",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          _vm.register($event)
+        }
+      }
+    },
+    [
       _c("div", { staticClass: "form-group" }, [
         _c(
           "label",
@@ -46409,6 +46436,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
             staticClass: "form-control",
             attrs: {
               id: "name",
@@ -46416,6 +46451,15 @@ var staticRenderFns = [
               name: "name",
               required: "",
               autofocus: ""
+            },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
             }
           })
         ])
@@ -46430,8 +46474,25 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              }
+            ],
             staticClass: "form-control",
-            attrs: { id: "email", type: "email", name: "email", required: "" }
+            attrs: { id: "email", type: "email", name: "email", required: "" },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
           })
         ])
       ]),
@@ -46445,48 +46506,79 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.password,
+                expression: "password"
+              }
+            ],
             staticClass: "form-control",
             attrs: {
               id: "password",
               type: "password",
               name: "password",
               required: ""
+            },
+            domProps: { value: _vm.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.password = $event.target.value
+              }
             }
           })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 control-label",
+          attrs: { for: "password-confirm" }
+        },
+        [_vm._v("确认密码")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            id: "password-confirm",
+            type: "password",
+            name: "password_confirmation",
+            required: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
         _c(
-          "label",
-          {
-            staticClass: "col-md-4 control-label",
-            attrs: { for: "password-confirm" }
-          },
-          [_vm._v("确认密码")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("input", {
-            staticClass: "form-control",
-            attrs: {
-              id: "password-confirm",
-              type: "password",
-              name: "password_confirmation",
-              required: ""
-            }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
-          _c(
-            "button",
-            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-            [_vm._v("\n                注册\n            ")]
-          )
-        ])
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("\n                注册\n            ")]
+        )
       ])
     ])
   }

@@ -1,10 +1,10 @@
 <template>
-  <form class="form-horizontal">
+  <form class="form-horizontal" @submit.prevent="register">
       <div class="form-group">
           <label for="name" class="col-md-4 control-label">用户名</label>
 
           <div class="col-md-6">
-              <input id="name" type="text" class="form-control" name="name" required autofocus>
+              <input v-model="name" id="name" type="text" class="form-control" name="name" required autofocus>
           </div>
       </div>
 
@@ -12,7 +12,7 @@
           <label for="email" class="col-md-4 control-label">邮箱</label>
 
           <div class="col-md-6">
-              <input id="email" type="email" class="form-control" name="email" required>
+              <input v-model="email" id="email" type="email" class="form-control" name="email" required>
           </div>
       </div>
 
@@ -20,7 +20,7 @@
           <label for="password" class="col-md-4 control-label">密码</label>
 
           <div class="col-md-6">
-              <input id="password" type="password" class="form-control" name="password" required>
+              <input v-model="password" id="password" type="password" class="form-control" name="password" required>
           </div>
       </div>
 
@@ -43,5 +43,25 @@
 </template>
 
 <script>
-
+  export default {
+    data() {
+      return {
+        name: '',
+        email: '',
+        password: '',
+      }
+    },
+    methods: {
+      register() {
+        let formData = {
+          name: this.name,
+          email: this.email,
+          password: this.password
+        }
+        axios.post('api/register', formData).then(r => {
+          
+        })
+      }
+    }
+  }
 </script>
