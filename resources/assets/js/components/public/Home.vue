@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">文章列表</div>
+                    <div class="panel-heading">房源</div>
                     <div class="panel-body">
-                      <div v-for="post in posts" :key="post.id" class="bs-callout bs-callout-danger">
-                        <h4><router-link :to="{ name: 'posts', params: { id: post.id }}">{{post.title}}</router-link></h4>
-                        <p>{{ post.body }}</p>
+                      <div v-for="row in houses" :key="row.id" class="bs-callout bs-callout-danger">
+                        <h4><router-link :to="{ name: 'house', params: { id: row.id }}">{{row.id}}</router-link></h4>
+                        <p>{{ row.title }}</p>
                       </div>
                     </div>
                 </div>
@@ -19,13 +19,13 @@
 <script>
     export default {
         mounted() {
-            axios.get('/api/posts').then(r => {
-              this.posts = r.data.data;
+            axios.get('/api/house/read').then(r => {
+              this.houses = r.data.data;
             })
         },
         data(){
           return {
-            posts: []
+            houses: []
           }
         }
     }

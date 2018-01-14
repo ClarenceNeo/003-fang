@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::any('{model}/{action}', function($model,$action){
+    $controller = '\App\Http\Controllers\\' . ucfirst($model) . 'sController';
+    // dd($action, $controller, $model);
+    return (new $controller($model))->$action();
+});

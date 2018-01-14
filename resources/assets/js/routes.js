@@ -2,17 +2,22 @@ import VueRouter from 'vue-router'
 
 let routes = [{
   path: '/',
-  component: require('./components/Home')
+  component: require('./components/public/Home')
 }, {
   path: '/admin',
-  component: require('./components/Admin')
+  component: require('./components/admin/HouseForm'),
+  // children: [
+  //   path: '',
+  //   name: 'admin',
+  //   component: require('./components/admin/HouseForm'),
+  // ],
 }, {
-  path: '/posts/:id',
-  name: 'posts',
-  component: require('./components/Post')
+  path: '/house/:id',
+  name: 'house',
+  component: require('./components/public/House')
 }]
 
 export default new VueRouter({
-  // mode: 'history',
+  mode: 'history',
   routes
 })
