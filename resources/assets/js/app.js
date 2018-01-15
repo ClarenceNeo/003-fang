@@ -14,9 +14,10 @@
 
  axios.interceptors.request.use(function (config) {
    if (jwtToken.getToken()) {
+     // console.log(config);
      config.headers['Authorization'] = 'Bearer' + ' ' + jwtToken.getToken();
    }
-    return config;
+   return config;
   }, function (error) {
     return Promise.reject(error);
   });

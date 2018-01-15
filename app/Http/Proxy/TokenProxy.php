@@ -36,6 +36,13 @@ class TokenProxy
     public function logout()
     {
       $user = auth()->guard('api')->user();
+
+      if (is_null($user)) {
+        app('cookie')->queue(app('cookie')->forget('refreshToken'));
+        return response()->json([
+          'message' => 'Logout!'
+        ],204);
+      }
       $accessToken = $user->token();
       app('db')->table('oauth_refresh_tokens')
         ->where('access_token_id', $accessToken->id)
@@ -43,13 +50,22 @@ class TokenProxy
           'revoked' => true,
         ]);
 
-      app('cookie')->forget('refreshToken');
+      app('cookie')->queue(app('cookie')->forget('refreshToken'));
 
-      $accessToken->revoked();
+      $accessToken->revoke();
 
       return response()->json([
         'message' => 'Logout!'
       ],204);
+    }
+
+    public function refresh()
+    {
+      $refreshToken = request()->cookie('refreshToken');
+
+      return $this->proxy('refresh_token', [
+        'refresh_token' => $refreshToken
+      ]);
     }
 
     public function proxy($grantType, array $data = [])

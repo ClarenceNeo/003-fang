@@ -26,3 +26,4 @@ Route::any('{model}/{action}', function($model,$action){
 Route::post('/register','Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout');
+Route::post('/refresh', 'Auth\LoginController@refresh');

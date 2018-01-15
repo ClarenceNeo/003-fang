@@ -3,11 +3,13 @@ import jwtToken from './../../helpers/jwt'
 export default {
   actions: {
     loginRequest({dispatch}, formData){
-      return axios.post('/api/login', formData).then(r => {
-        jwtToken.setToken(r.data.token)
-        // this.$store.state.AuthUser.authenticated = true;
-        dispatch('setAuthUser')
+      return axios.post('/api/login', formData).then(response => {
+        dispatch('loginSuccess',response.data)
       })
+    },
+    loginSuccess({dispatch}, tokenResponse){
+      jwtToken.setToken(tokenResponse.token)
+      dispatch('setAuthUser')
     },
     logoutRequest({dispatch}){
       return axios.post('/api/logout').then(response => {

@@ -66,7 +66,7 @@
               if (error.response.status === 421) {
                 this.bag.add('password', '邮箱和密码不相符', 'auth')
               }
-                console.log(error.response.data)
+              // console.log(error.response.data)
             })
           }
         })
