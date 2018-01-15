@@ -33,8 +33,27 @@ let routes = [{
   meta: {}
 }, {
   path: '/profile',
-  name: 'profile',
-  component: require('./components/user/Profile'),
+  component: require('./components/user/ProfileWrapper'),
+  children: [
+    {
+      path: '',
+      name: 'profile',
+      component: require('./components/user/Profile'),
+      meth: { requiresAuth: true }
+    },
+    {
+      path: '/edit-profile',
+      name: 'profile.editProfile',
+      component: require('./components/user/EditProfile'),
+      meth: { requiresAuth: true }
+    },
+    {
+      path: '/edit-password',
+      name: 'profile.editPassword',
+      component: require('./components/user/EditPassword'),
+      meth: { requiresAuth: true }
+    }
+  ],
   meta: { requiresAuth: true }
 }]
 
