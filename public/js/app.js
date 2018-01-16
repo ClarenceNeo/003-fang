@@ -55729,10 +55729,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -55793,7 +55789,6 @@ var render = function() {
   return _c(
     "form",
     {
-      staticClass: "form-horizontal",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -55811,57 +55806,55 @@ var render = function() {
         [
           _c(
             "label",
-            { staticClass: "col-md-4 control-label", attrs: { for: "name" } },
+            { staticClass: "control-label", attrs: { for: "name" } },
             [_vm._v("用户名")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("input", {
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              },
+              { name: "validate", rawName: "v-validate" }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              "data-vv-rules": "required|min:4",
+              "data-vv-as": "邮箱",
+              id: "name",
+              type: "text",
+              name: "name",
+              required: ""
+            },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
               directives: [
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.name,
-                  expression: "name"
-                },
-                { name: "validate", rawName: "v-validate" }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                "data-vv-rules": "required|min:4",
-                "data-vv-as": "邮箱",
-                id: "name",
-                type: "text",
-                name: "name",
-                required: ""
-              },
-              domProps: { value: _vm.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.name = $event.target.value
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.errors.has("name"),
+                  expression: "errors.has('name')"
                 }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.errors.has("name"),
-                    expression: "errors.has('name')"
-                  }
-                ],
-                staticClass: "help-block"
-              },
-              [_vm._v(_vm._s(_vm.errors.first("email")))]
-            )
-          ])
+              ],
+              staticClass: "help-block"
+            },
+            [_vm._v(_vm._s(_vm.errors.first("email")))]
+          )
         ]
       ),
       _vm._v(" "),
@@ -55874,57 +55867,55 @@ var render = function() {
         [
           _c(
             "label",
-            { staticClass: "col-md-4 control-label", attrs: { for: "email" } },
+            { staticClass: "control-label", attrs: { for: "email" } },
             [_vm._v("邮箱")]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("input", {
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.email,
+                expression: "email"
+              },
+              { name: "validate", rawName: "v-validate" }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              "data-vv-rules": "required|email",
+              "data-vv-as": "邮箱",
+              id: "email",
+              type: "email",
+              name: "email",
+              required: ""
+            },
+            domProps: { value: _vm.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.email = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
               directives: [
                 {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.email,
-                  expression: "email"
-                },
-                { name: "validate", rawName: "v-validate" }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                "data-vv-rules": "required|email",
-                "data-vv-as": "邮箱",
-                id: "email",
-                type: "email",
-                name: "email",
-                required: ""
-              },
-              domProps: { value: _vm.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.email = $event.target.value
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.errors.has("email"),
+                  expression: "errors.has('email')"
                 }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.errors.has("email"),
-                    expression: "errors.has('email')"
-                  }
-                ],
-                staticClass: "help-block"
-              },
-              [_vm._v(_vm._s(_vm.errors.first("email")))]
-            )
-          ])
+              ],
+              staticClass: "help-block"
+            },
+            [_vm._v(_vm._s(_vm.errors.first("email")))]
+          )
         ]
       ),
       _vm._v(" "),
@@ -55938,7 +55929,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
+      _c("div", {}, [
         _c(
           "button",
           { staticClass: "btn btn-primary", attrs: { type: "submit" } },
