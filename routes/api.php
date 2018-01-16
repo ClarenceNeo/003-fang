@@ -27,4 +27,6 @@ Route::post('/register','Auth\RegisterController@register');
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout');
 Route::post('/refresh', 'Auth\LoginController@refresh');
+
 Route::post('/userProfileUpdate', 'ProfileController@update')->middleware('auth:api');
+Route::post('/userPasswordUpdate', 'PasswordController@update')->middleware('auth:api');
