@@ -14,3 +14,7 @@
 Route::any('{all}', function () {
     return view('layouts.root');
 })->where(['all' => '.*']);
+
+// Route::any('test', function() {
+//     return env('APP_URL').'/oauth/token';
+// });

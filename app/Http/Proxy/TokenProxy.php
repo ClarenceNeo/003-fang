@@ -76,7 +76,7 @@ class TokenProxy
             'grant_type' => $grantType,
         ]);
 
-      $response = $this->http->post('http://fang.test/oauth/token',[
+      $response = $this->http->post(env('APP_URL').'/oauth/token',[
           'form_params' => $data
       ]);
 
